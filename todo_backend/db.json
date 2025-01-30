@@ -1,0 +1,6 @@
+{
+    "todos": [
+      { "id": 1, "title": "Obst kaufen" },
+      { "id": 2, "title": "Milch kaufen" }
+    ]
+  }
