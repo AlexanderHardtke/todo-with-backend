@@ -5,38 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Todo</title>
 </head>
-<body onload="render()">
+<body onload="loadTodo()">
     <h1>Todo-Liste</h1>
     <form onsubmit="addTodo(); return false;">
         <input type="text" placeholder="Neues Todo" id="todoInput">
         <button>Hinzufügen</button>
     </form>
     
-    <ul id="todoList"></ul>
+    <ul id="todoList">
+        <li>Laden...</li>
+    </ul>
     
     <script>
-        let todos = ['Einkaufen',];
+        let todos = [];
+
+        async function loadTodo() {
+            const url = 'http://localhost:3000/todos';
+            let resp = await fetch(url);
+            todos = await resp.json();
+            render();
+        }
 
         function addTodo() {
             input = document.getElementById('todoInput');
             let todoText = input.value;
-            todos.push(todoText);
+            todos.push({"title": todoText});
             input.value = '';
-            save();
+            addToServer(todoText);
             render();
         }
 
-        function save() {
-            fetch('http//127.0.0.1/todos', {
-                body: JSON.stringify(todos),
-                method: 'PUT'
+        function addToServer(todoText) {
+            fetch('http://127.0.0.1:3000/todos', {
+                body: JSON.stringify({"title": todoText}),
+                headers: {"Content-Type": "application/json;charset=UTF8"},
+                method: 'POST'
             });
         }
 
         function render() {
             list = document.getElementById('todoList');
             list.innerHTML = '';
-            todos.forEach( todo => list.innerHTML += `<li>${todo}</li>`)
+            todos.forEach( todo => list.innerHTML += `<li>${todo.title}</li>`)
         }
 
     </script>

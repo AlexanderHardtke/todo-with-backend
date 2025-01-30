@@ -1,6 +1,26 @@
 {
-    "todos": [
-      { "id": 1, "title": "Obst kaufen" },
-      { "id": 2, "title": "Milch kaufen" }
-    ]
-  }
+  "todos": [
+    {
+      "id": "1",
+      "title": "Obst kaufen"
+    },
+    {
+      "id": "2",
+      "title": "Milch kaufen"
+    },
+    {
+      "id": "6198",
+      "title": "test1"
+    }
+  ],
+  "notes": [
+    {
+      "id": "1",
+      "title": "Kekse"
+    },
+    {
+      "id": "2",
+      "title": "Mehr Kekse"
+    }
+  ]
+}
